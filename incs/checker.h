@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/08 08:46:28 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/08 15:17:54 by ninieddu         ###   ########lyon.fr   */
+/*   Created: 2021/04/08 08:48:42 by ninieddu          #+#    #+#             */
+/*   Updated: 2021/04/08 14:45:10 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/checker.h"
+#ifndef CHECKER_H
+# define CHECKER_H
 
-int     main()
-{
-    int r = ft_strlen("Coucou");
-    ft_printf("\n%d!\n", r);
-    return (0);
-}
+#include "../srcs/ft_printf/ft_printf.h"
+#include "../srcs/libft/libft.h"
+
+#endif

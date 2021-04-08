@@ -1,43 +1,78 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/04/08 14:35:45 by ninieddu          #+#    #+#              #
+#    Updated: 2021/04/08 15:17:13 by ninieddu         ###   ########lyon.fr    #
+#                                                                              #
+# **************************************************************************** #
+
 NAME				=	push_swap
+
+CHEKCER				=	checker
 
 CC					=	gcc
 CFLAGS				=	-Wall -Wextra -Werror
 
-DIR_FT				=	srcs/ft_printf/
-LIBS				=	-lft
+DIR_LIBFT			=	srcs/libft/
+DIR_FT_PRINTF		=	srcs/ft_printf/
+
+LIBS				=	-lft -lftprintf
 
 VPATH				=	incs/ \
 						srcs/ \
-						# srcs/environment \
 
 INCS				=	push_swap.h
 
-SRCS				=	push_swap.c \
+INCS_CHECKER		=	checker.h
+
+SRCS				=	push_swap.c
+
+SRCS_CHECKER		=	checker.c
 
 OPATH				=	objs/
 
+OPATH_CHECKER		=	objs/objs_checker
+
 OBJS				=	$(SRCS:%.c=$(OPATH)%.o)
 
-all					:	$(NAME)
+OBJS_CHECKER		=	$(SRCS_CHECKER:%.c=$(OPATH_CHECKER)%.o)
+
+all					:	$(NAME) $(CHEKCER)
 
 $(OPATH)%.o			:	%.c $(INCS)
 						$(shell mkdir -p objs)
 						$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME)				:	$(OBJS)
-						$(MAKE) -C $(DIR_FT)
-						$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L $(DIR_FT) $(LIBS)
+						$(MAKE) -C $(DIR_LIBFT)
+						$(MAKE) -C $(DIR_FT_PRINTF)
+						$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L $(DIR_LIBFT) -L $(DIR_FT_PRINTF) $(LIBS)
+
+$(OPATH_CHECKER)%.o		:	%.c $(INCS_CHECKER)
+						$(shell mkdir -p objs/objs_checker)
+						$(CC) $(CFLAGS) -c $< -o $@
+
+$(CHEKCER)			:	$(OBJS_CHECKER)
+						$(CC) $(CFLAGS) $(OBJS_CHECKER) -o $(CHEKCER) -L $(DIR_LIBFT) -L $(DIR_FT_PRINTF) $(LIBS)
 
 clean				:
 						$(RM) $(OBJS)
+						$(RM) $(OBJS_CHECKER)
 						$(RM) -r push_swap.dSYM
 						$(RM) -r $(OPATH)
-						$(MAKE) $@ -C $(DIR_FT)
+						$(RM) -r $(OPATH_CHECKER)
+						$(MAKE) $@ -C $(DIR_LIBFT)
+						$(MAKE) $@ -C $(DIR_FT_PRINTF)
 
 fclean				:	clean
-						# $(RM) srcs/ft_printf/ft_printf.a
-						$(RM) srcs/$(DIR_FT)/$(DIR_FT).a
+						$(RM) srcs/libft/libft.a
+						$(RM) srcs/ft_printf/libftprintf.a
 						$(RM) $(NAME)
+						$(RM) $(CHEKCER)
 
 re					:	fclean all
 
