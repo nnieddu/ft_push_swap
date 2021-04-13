@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:53:05 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/13 13:34:58 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:24:41 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,7 @@ int 	ft_is_error(char **av, int ac, int i)
 	{
 		if (ft_is_number(av[i]) == -1)
 		{
-			ft_putstr_fd("Error, invalid args in stack (only integer in ", 2);
-			ft_putstr_fd("int min and max range allowed).\n", 2);
+			ft_putstr_fd("Error, invalid args in stack (only integer)", 2);
 			return (-1);
 		}
 	}

@@ -6,11 +6,29 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:53:47 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/13 13:45:50 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:25:50 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/checker.h"
+
+void	ft_get_input_next(char **line, char buff[2])
+{
+	if (*line)
+	{
+		if (*buff == '\n')
+			*line = ft_strjoin(*line, "\0");
+		else
+			*line = ft_strjoin(*line, buff);
+	}
+	else
+	{
+		if (*buff == '\n')
+			*line = ft_strjoin("", "\0");
+		else
+			*line = ft_strjoin("", buff);
+	}	
+}
 
 char	*ft_get_input(int fd, char *line)
 {
@@ -27,9 +45,9 @@ char	*ft_get_input(int fd, char *line)
 				break ;
 			continue ;
 		}
-		// if (!(line = ft_strjoin((line ? line : "\0"),
-		// 	(*buff == '\n' ? "\0" : buff))))
-		// 	return (NULL);
+		ft_get_input_next(&line, buff);
+		if (line == NULL)
+			return (NULL);
 		if (tmp)
 			free(tmp);
 		if (*buff == '\n')
@@ -61,14 +79,6 @@ long long	ft_atoi_big(const char *str)
 	if (sign == '-' )
 		return (-big);
 	return (big);
-}
-
-void	ft_strdel(char *str)
-{
-	if (str == NULL)
-		return ;
-	free(str);
-	str = NULL;
 }
 
 char	*ft_strjoin_cust(char *s1, char const *s2)

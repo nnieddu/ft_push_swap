@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:46:28 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/13 13:31:54 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:19:50 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,12 @@ int	main(int ac, char **av)
 {
 	t_stack		a;
 	t_stack		b;
-	char		*input = NULL;
-	char		*instr_str = NULL;
-	char		*instr_str_tmp = NULL;
-	char		**instr_tab = NULL;
+	char		*input;
+	char		*instr_str;
+	char		*instr_str_tmp;
+	char		**instr_tab;
 
+	instr_str = NULL;
 	if (ac < 2)
 		return (0);
 	if (ft_is_error(av, ac, 0) == -1)

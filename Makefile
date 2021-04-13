@@ -6,7 +6,7 @@
 #    By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/08 14:35:45 by ninieddu          #+#    #+#              #
-#    Updated: 2021/04/12 18:04:52 by ninieddu         ###   ########lyon.fr    #
+#    Updated: 2021/04/13 14:43:45 by ninieddu         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ clean				:
 						$(RM) -rf objs/
 						$(MAKE) $@ -C $(DIR_LIBFT)
 						$(MAKE) $@ -C $(DIR_FT_PRINTF)
-						$(MAKE) -C $(DIR_GNL)
+						$(MAKE) $@ -C $(DIR_GNL)
 
 fclean				:	clean
 						$(RM) srcs/ext/libft/libft.a

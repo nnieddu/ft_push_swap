@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:44:59 by cmalfroy          #+#    #+#             */
-/*   Updated: 2021/04/13 13:15:27 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:25:18 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_stack
 }				t_stack;
 
 long long	ft_atoi_big(const char *str);
-void 		ft_strdel(char *str);
 char 		*ft_get_input(int fd, char *line);
 int 		ft_is_error(char **av, int ac, int i);
 int 		ft_is_sorted(int ac, char **av);
