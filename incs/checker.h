@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:44:59 by cmalfroy          #+#    #+#             */
-/*   Updated: 2021/04/12 22:39:26 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 13:15:27 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@
 typedef struct s_stack
 {
 	int			*stack;
+	int			size;
 }				t_stack;
 
 long long	ft_atoi_big(const char *str);
 void 		ft_strdel(char *str);
 char 		*ft_get_input(int fd, char *line);
 int 		ft_is_error(char **av, int ac, int i);
-int 		ft_is_sorted(int ac, char **av, int i, int j);
-int			ft_is_instruction(char *input);
+int 		ft_is_sorted(int ac, char **av);
 char		*ft_strjoin_cust(char *s1, char const *s2);
 void		ft_tabdel(char ***tab);
-int 		ft_is_sorted_num(int ac, t_stack a, int i, int j);
-void		ft_tabdel_int(int **tab);
-void		ft_swap(int flag, int ac, t_stack *a, t_stack *b); // have to be improve (ac depreciated)
-void		ft_push(int flag,  t_stack *a, t_stack *b);
+int 		ft_is_sorted_num(t_stack a);
+void		ft_swap(int flag, t_stack *a, t_stack *b);
+void		ft_push(t_stack *a, t_stack *b);
 void		ft_rotate(int flag, t_stack *a, t_stack *b);
+void		ft_reverse_rotate(int flag, t_stack *a, t_stack *b);
 
 #endif

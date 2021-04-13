@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:53:47 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/12 17:54:21 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 13:14:25 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ long long		ft_atoi_big(const char *str)
 	return (sign == '-' ? -big: big);
 }
 
-
 void ft_strdel(char *str)
 {
 	if (str == NULL)
@@ -104,18 +103,4 @@ void	ft_tabdel(char ***tab)
 	}
 	free(*tab);
 	*tab = 0;
-}
-
-void	ft_tabdel_int(int **tab)
-{
-	int		i;
-
-	if (!tab || !*tab)
-		return ;
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
 }

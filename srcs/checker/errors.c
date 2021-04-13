@@ -6,14 +6,19 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:53:05 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/12 22:03:46 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 13:21:10 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/checker.h"
 
-int ft_is_sorted(int ac, char **av, int i, int j)
+int		ft_is_sorted(int ac, char **av)
 {
+	int	i;
+	int j;
+
+	i = 1;
+	j = 2;
 	while (i < ac)
 	{
 		while (j < ac && ft_atoi(av[i]) < ft_atoi(av[j]))
@@ -31,13 +36,18 @@ int ft_is_sorted(int ac, char **av, int i, int j)
 	return (0);
 }
 
-int ft_is_sorted_num(int ac, t_stack a, int i, int j)
+int 	ft_is_sorted_num(t_stack a)
 {
-	while (i < ac)
+	int	i;
+	int j;
+
+	i = 0;
+	j = 1;
+	while (i < a.size)
 	{
-		while (j < ac && a.stack[i] < a.stack[j])
+		while (j < a.size && a.stack[i] < a.stack[j])
 			j++;
-		if (j == ac)
+		if (j == a.size)
 		{
 			i++;
 			j = i + 1;
@@ -45,12 +55,12 @@ int ft_is_sorted_num(int ac, t_stack a, int i, int j)
 		else
 			break;
 	}
-	if (j < ac)
+	if (j < a.size)
 		return (1);
 	return (0);
 }
 
-int ft_is_number(char *av)
+int 	ft_is_number(char *av)
 {
 	int i;
 
@@ -64,7 +74,7 @@ int ft_is_number(char *av)
 	return (0);
 }
 
-int ft_is_duplicate(char **av, int ac, int i, int j)
+int 	ft_is_duplicate(char **av, int ac, int i, int j)
 {
 	while (i < ac)
 	{
@@ -83,7 +93,7 @@ int ft_is_duplicate(char **av, int ac, int i, int j)
 	return (0);
 }
 
-int ft_is_error(char **av, int ac, int i)
+int 	ft_is_error(char **av, int ac, int i)
 {
 	if (ft_is_duplicate(av, ac, 1, 2) == -1)
 	{
@@ -93,30 +103,20 @@ int ft_is_error(char **av, int ac, int i)
 	while (av[++i])
 		if (ft_is_number(av[i]) == -1)
 		{
-			ft_putstr_fd("Error, invalid args in stack (only integer in int min and max range allowed).\n", 2);
+			ft_putstr_fd("Error, invalid args in stack (only integer in ", 2);
+			ft_putstr_fd("int min and max range allowed).\n", 2);
 			return (-1);
 		}
 	i = 0;
 	while (av[++i])
 	{
-		if (ft_atoi_big(av[i]) > 2147483647 || ft_atoi_big(av[i]) < -2147483648)
+		if (ft_atoi_big(av[i]) > 2147483647 ||
+		ft_atoi_big(av[i]) < -2147483648)
 		{
-			ft_putstr_fd("Error, invalid args in stack (args need to be less than int max and sup than int min).\n", 2); // can be improv to manage bigbig
+			ft_putstr_fd("Error, invalid args in stack (args need to be ", 2);
+			ft_putstr_fd("less than int max and sup than int min).\n", 2);
 			return (-1);
 		}	
 	}
 	return (0);
-}
-
-int		ft_is_instruction(char *input)
-{
-	if (ft_strcmp(input, "sa") == 0 || ft_strcmp(input, "sb") == 0 || 
-	ft_strcmp(input, "ss") == 0 || ft_strcmp(input, "pa") == 0
-	|| ft_strcmp(input, "pb") == 0 || ft_strcmp(input, "ra") == 0 || 
-	ft_strcmp(input, "rb") == 0 || ft_strcmp(input, "rr") == 0
-	|| ft_strcmp(input, "rra") == 0 || ft_strcmp(input, "rrb") == 0 || 
-	ft_strcmp(input, "rrr") == 0)
-		return (0);
-	ft_putstr_fd("Error, invalid instruction (don't exist or not correctly formatted).\n", 2);
-	return (-1);
 }
