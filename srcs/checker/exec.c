@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:04:39 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/13 15:46:52 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:41:22 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,33 @@ void	ft_reverse_rotate(int flag, t_stack *a, t_stack *b)
 	a->stack = tmp;
 	if (flag == 1)
 		ft_reverse_rotate(0, b, NULL);
+}
+
+void	exec_instr(char **inst, int i, t_stack *a, t_stack *b)
+{
+	while (inst[++i])
+	{
+		if (ft_strcmp(inst[i], "sa") == 0)
+			ft_swap(0, a, b);
+		if (ft_strcmp(inst[i], "sb") == 0)
+			ft_swap(1, a, b);
+		if (ft_strcmp(inst[i], "ss") == 0)
+			ft_swap(2, a, b);
+		if (ft_strcmp(inst[i], "pa") == 0 && b->size > 0)
+			ft_push(b, a);
+		if (ft_strcmp(inst[i], "pb") == 0 && a->size > 0)
+			ft_push(a, b);
+		if (ft_strcmp(inst[i], "ra") == 0 && a->size > 1)
+			ft_rotate(0, a, NULL);
+		if (ft_strcmp(inst[i], "rb") == 0 && b->size > 1)
+			ft_rotate(0, b, NULL);
+		if (ft_strcmp(inst[i], "rr") == 0)
+			ft_rotate(1, a, b);
+		if (ft_strcmp(inst[i], "rra") == 0)
+			ft_reverse_rotate(0, a, NULL);
+		if (ft_strcmp(inst[i], "rrb") == 0)
+			ft_reverse_rotate(0, b, NULL);
+		if (ft_strcmp(inst[i], "rrr") == 0)
+			ft_reverse_rotate(1, a, b);
+	}
 }

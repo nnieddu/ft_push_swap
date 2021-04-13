@@ -6,40 +6,11 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:46:28 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/13 16:19:50 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:53:22 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/checker.h"
-
-void	exec_instr(char **inst, int i, t_stack *a, t_stack *b)
-{
-	while (inst[++i])
-	{
-		if (ft_strcmp(inst[i], "sa") == 0)
-			ft_swap(0, a, b);
-		if (ft_strcmp(inst[i], "sb") == 0)
-			ft_swap(1, a, b);
-		if (ft_strcmp(inst[i], "ss") == 0)
-			ft_swap(2, a, b);
-		if (ft_strcmp(inst[i], "pa") == 0 && b->size > 0)
-			ft_push(b, a);
-		if (ft_strcmp(inst[i], "pb") == 0 && a->size > 0)
-			ft_push(a, b);
-		if (ft_strcmp(inst[i], "ra") == 0 && a->size > 1)
-			ft_rotate(0, a, NULL);
-		if (ft_strcmp(inst[i], "rb") == 0 && b->size > 1)
-			ft_rotate(0, b, NULL);
-		if (ft_strcmp(inst[i], "rr") == 0)
-			ft_rotate(1, a, b);
-		if (ft_strcmp(inst[i], "rra") == 0)
-			ft_reverse_rotate(0, a, NULL);
-		if (ft_strcmp(inst[i], "rrb") == 0)
-			ft_reverse_rotate(0, b, NULL);
-		if (ft_strcmp(inst[i], "rrr") == 0)
-			ft_reverse_rotate(1, a, b);
-	}
-}
 
 int	ft_is_instruction(char *input)
 {
@@ -72,16 +43,45 @@ void	ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
 	}
 }
 
+void	ft_join_instrs(char **input, char **instr_str_tmp, char **instr_str)
+{
+	if (ft_is_instruction(*input) == 0)
+	{
+		*instr_str_tmp = &**instr_str;
+		*instr_str = ft_strjoin_cust(*instr_str_tmp, *input);
+		ft_strdel(*instr_str_tmp);
+	}
+}
+
+void	ft_exec_loop(t_stack *a, t_stack *b, char *instr_str)
+{
+	char		*input;
+	char		*instr_str_tmp;
+	char		**instr_tab;
+
+	while (1)
+	{
+		input = ft_get_input(0, NULL);
+		if (input[0] == 0 && instr_str != NULL)
+		{
+			ft_strdel(input);
+			instr_tab = ft_split(instr_str, ' ');
+			ft_strdel(instr_str);
+			exec_instr(instr_tab, -1, a, b);
+			ft_tabdel(&instr_tab);
+			break ;
+		}
+		else
+			ft_join_instrs(&input, &instr_str_tmp, &instr_str);
+		ft_strdel(input);
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_stack		a;
 	t_stack		b;
-	char		*input;
-	char		*instr_str;
-	char		*instr_str_tmp;
-	char		**instr_tab;
 
-	instr_str = NULL;
 	if (ac < 2)
 		return (0);
 	if (ft_is_error(av, ac, 0) == -1)
@@ -89,29 +89,7 @@ int	main(int ac, char **av)
 	if (ft_is_sorted(ac, av) == 1)
 	{
 		ft_stacks_maker(av, ac, &a, &b);
-		while (1)
-		{
-			input = ft_get_input(0, NULL);
-			if (input[0] == 0 && instr_str != NULL)
-			{
-				ft_strdel(input);
-				instr_tab = ft_split(instr_str, ' ');
-				ft_strdel(instr_str);
-				exec_instr(instr_tab, -1, &a, &b);
-				ft_tabdel(&instr_tab);
-				break ;
-			}
-			else
-			{
-				if (ft_is_instruction(input) == 0)
-				{
-					instr_str_tmp = &*instr_str;
-					instr_str = ft_strjoin_cust(instr_str_tmp, input);
-					ft_strdel(instr_str_tmp);
-				}
-			}
-			ft_strdel(input);
-		}
+		ft_exec_loop(&a, &b, NULL);
 		if (ft_is_sorted_num(a) == 1)
 			ft_putstr_fd("KO\n", 1);
 		else
