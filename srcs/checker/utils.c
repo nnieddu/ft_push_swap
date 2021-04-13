@@ -6,16 +6,16 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:53:47 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/13 13:14:25 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 13:45:50 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/checker.h"
 
-char *ft_get_input(int fd, char *line)
+char	*ft_get_input(int fd, char *line)
 {
-	char buff[2];
-	char *tmp;
+	char	buff[2];
+	char	*tmp;
 
 	buff[1] = 0;
 	while (1)
@@ -24,28 +24,27 @@ char *ft_get_input(int fd, char *line)
 		if (read(fd, buff, 1) == 0)
 		{
 			if (!tmp)
-				break;
-			continue;
+				break ;
+			continue ;
 		}
-		if (!(line = ft_strjoin((line ? line : "\0"),
-								(*buff == '\n' ? "\0" : buff))))
-			return (NULL);
+		// if (!(line = ft_strjoin((line ? line : "\0"),
+		// 	(*buff == '\n' ? "\0" : buff))))
+		// 	return (NULL);
 		if (tmp)
 			free(tmp);
 		if (*buff == '\n')
-			break;
+			break ;
 	}
 	return (line);
 }
 
-long long		ft_atoi_big(const char *str)
+long long	ft_atoi_big(const char *str)
 {
 	long long	big;
-	char	sign;
+	char		sign;
 
 	big = 0;
 	sign = '+';
-
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
@@ -59,13 +58,15 @@ long long		ft_atoi_big(const char *str)
 		big = big * 10 + (*str - 48);
 		str++;
 	}
-	return (sign == '-' ? -big: big);
+	if (sign == '-' )
+		return (-big);
+	return (big);
 }
 
-void ft_strdel(char *str)
+void	ft_strdel(char *str)
 {
 	if (str == NULL)
-		return;
+		return ;
 	free(str);
 	str = NULL;
 }
@@ -76,7 +77,8 @@ char	*ft_strjoin_cust(char *s1, char const *s2)
 	int		i;
 
 	i = 0;
-	if (!(dest = ft_calloc(sizeof(char), (ft_strlen(s1) + ft_strlen(s2) + 2))))
+	dest = ft_calloc(sizeof(char), (ft_strlen(s1) + ft_strlen(s2) + 2));
+	if (dest == NULL)
 		return (NULL);
 	if (s1)
 		while (*s1)
@@ -85,7 +87,7 @@ char	*ft_strjoin_cust(char *s1, char const *s2)
 		dest[i++] = *s2++;
 	dest[i] = ' ';
 	dest[i + 1] = '\0';
-    return (dest);
+	return (dest);
 }
 
 void	ft_tabdel(char ***tab)

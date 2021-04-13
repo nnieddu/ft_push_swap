@@ -6,16 +6,16 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:53:05 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/13 13:24:14 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 13:34:58 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/checker.h"
 
-int		ft_is_sorted(int ac, char **av)
+int	ft_is_sorted(int ac, char **av)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 1;
 	j = 2;
@@ -29,7 +29,7 @@ int		ft_is_sorted(int ac, char **av)
 			j = i + 1;
 		}
 		else
-			break;
+			break ;
 	}
 	if (j < ac)
 		return (1);
@@ -39,7 +39,7 @@ int		ft_is_sorted(int ac, char **av)
 int 	ft_is_sorted_num(t_stack a)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	j = 1;
@@ -53,7 +53,7 @@ int 	ft_is_sorted_num(t_stack a)
 			j = i + 1;
 		}
 		else
-			break;
+			break ;
 	}
 	if (j < a.size)
 		return (1);
@@ -62,7 +62,7 @@ int 	ft_is_sorted_num(t_stack a)
 
 int 	ft_is_number(char *av)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (av[i])
@@ -86,7 +86,7 @@ int 	ft_is_duplicate(char **av, int ac, int i, int j)
 			j = i + 1;
 		}
 		else
-			break;
+			break ;
 	}
 	if (j < ac)
 		return (-1);
@@ -101,17 +101,19 @@ int 	ft_is_error(char **av, int ac, int i)
 		return (-1);
 	}
 	while (av[++i])
+	{
 		if (ft_is_number(av[i]) == -1)
 		{
 			ft_putstr_fd("Error, invalid args in stack (only integer in ", 2);
 			ft_putstr_fd("int min and max range allowed).\n", 2);
 			return (-1);
 		}
+	}
 	i = 0;
 	while (av[++i])
 	{
-		if (ft_atoi_big(av[i]) > 2147483647 ||
-		ft_atoi_big(av[i]) < -2147483648)
+		if (ft_atoi_big(av[i]) > 2147483647
+			|| ft_atoi_big(av[i]) < -2147483648)
 		{
 			ft_putstr_fd("Error, invalid args in stack (args need to be ", 2);
 			ft_putstr_fd("less than int max and sup than int min).\n", 2);

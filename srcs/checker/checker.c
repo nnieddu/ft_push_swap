@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:46:28 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/13 13:18:18 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 13:31:54 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	exec_instr(char **inst, int i, t_stack *a, t_stack *b)
 {
-	while(inst[++i])
+	while (inst[++i])
 	{
 		if (ft_strcmp(inst[i], "sa") == 0)
 			ft_swap(0, a, b);
@@ -41,16 +41,17 @@ void	exec_instr(char **inst, int i, t_stack *a, t_stack *b)
 	}
 }
 
-int		ft_is_instruction(char *input)
+int	ft_is_instruction(char *input)
 {
-	if (ft_strcmp(input, "sa") == 0 || ft_strcmp(input, "sb") == 0 || 
-	ft_strcmp(input, "ss") == 0 || ft_strcmp(input, "pa") == 0
-	|| ft_strcmp(input, "pb") == 0 || ft_strcmp(input, "ra") == 0 || 
-	ft_strcmp(input, "rb") == 0 || ft_strcmp(input, "rr") == 0
-	|| ft_strcmp(input, "rra") == 0 || ft_strcmp(input, "rrb") == 0 || 
-	ft_strcmp(input, "rrr") == 0)
+	if (ft_strcmp(input, "sa") == 0 || ft_strcmp(input, "sb") == 0
+		|| ft_strcmp(input, "ss") == 0 || ft_strcmp(input, "pa") == 0
+		|| ft_strcmp(input, "pb") == 0 || ft_strcmp(input, "ra") == 0
+		|| ft_strcmp(input, "rb") == 0 || ft_strcmp(input, "rr") == 0
+		|| ft_strcmp(input, "rra") == 0 || ft_strcmp(input, "rrb") == 0
+		|| ft_strcmp(input, "rrr") == 0)
 		return (0);
-	ft_putstr_fd("Error, invalid instruction (don't exist or not correctly formatted).\n", 2);
+	ft_putstr_fd("Error, invalid instruction (don't exist or not ", 2);
+	ft_putstr_fd("correctly formatted).\n", 2);
 	return (-1);
 }
 
@@ -71,14 +72,14 @@ void	ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
 	}
 }
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_stack		a;
 	t_stack		b;
-	char	*input = NULL;
-	char	*instr_str = NULL;
-	char	*instr_str_tmp = NULL;
-	char	**instr_tab = NULL;
+	char		*input = NULL;
+	char		*instr_str = NULL;
+	char		*instr_str_tmp = NULL;
+	char		**instr_tab = NULL;
 
 	if (ac < 2)
 		return (0);
@@ -97,7 +98,7 @@ int		main(int ac, char **av)
 				ft_strdel(instr_str);
 				exec_instr(instr_tab, -1, &a, &b);
 				ft_tabdel(&instr_tab);
-				break;
+				break ;
 			}
 			else
 			{
