@@ -6,15 +6,16 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:04:39 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/13 13:14:42 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 13:25:18 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/checker.h"
 
-void	ft_swap(int flag, t_stack *a, t_stack *b)
+void		ft_swap(int flag, t_stack *a, t_stack *b)
 {
-	int tmp;
+	int 	tmp;
+
 	if ((flag == 0 || flag == 2) && a->size > 1)
 	{
 		tmp = a->stack[0];
@@ -29,7 +30,7 @@ void	ft_swap(int flag, t_stack *a, t_stack *b)
 	}	
 }
 
-void	ft_push(t_stack *a, t_stack *b)
+void		ft_push(t_stack *a, t_stack *b)
 {
 	int		*tmp;
 	int		i;
@@ -57,7 +58,7 @@ void	ft_push(t_stack *a, t_stack *b)
 	a->stack = tmp;
 }
 
-void	ft_rotate(int flag, t_stack *a, t_stack *b)
+void		ft_rotate(int flag, t_stack *a, t_stack *b)
 {
 	int		*tmp;
 	int		i;
@@ -76,7 +77,7 @@ void	ft_rotate(int flag, t_stack *a, t_stack *b)
 		ft_rotate(0, b, NULL);
 }
 
-void	ft_reverse_rotate(int flag, t_stack *a, t_stack *b)
+void		ft_reverse_rotate(int flag, t_stack *a, t_stack *b)
 {
 	int		*tmp;
 	int		i;

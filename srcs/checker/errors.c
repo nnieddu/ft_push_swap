@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:53:05 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/13 13:21:10 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 13:24:14 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int 	ft_is_number(char *av)
 	i = 0;
 	while (av[i])
 	{
-		if ((av[i] < '0' || av[i] > '9' || av[i] == ' ') && av[i] != '-') // can be improve
+		if ((av[i] < '0' || av[i] > '9') && av[i] != '-' && av[i] != '+')
 			return (-1);
 		i++;
 	}
