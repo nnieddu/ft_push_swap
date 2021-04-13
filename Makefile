@@ -6,7 +6,7 @@
 #    By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/08 14:35:45 by ninieddu          #+#    #+#              #
-#    Updated: 2021/04/13 16:47:28 by ninieddu         ###   ########lyon.fr    #
+#    Updated: 2021/04/13 17:06:02 by ninieddu         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ clean				:
 
 fclean				:	clean
 						$(RM) srcs/ext/libft/libft.a
+						$(RM) srcs/ext/ft_get_next_line/libgnl.a
 						$(RM) srcs/ext/ft_printf/libftprintf.a
 						$(RM) $(NAME)
 						$(RM) $(CHEKCER)
