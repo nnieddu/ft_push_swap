@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:44:59 by cmalfroy          #+#    #+#             */
-/*   Updated: 2021/04/12 17:54:24 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 22:39:26 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@ char		*ft_strjoin_cust(char *s1, char const *s2);
 void		ft_tabdel(char ***tab);
 int 		ft_is_sorted_num(int ac, t_stack a, int i, int j);
 void		ft_tabdel_int(int **tab);
+void		ft_swap(int flag, int ac, t_stack *a, t_stack *b); // have to be improve (ac depreciated)
+void		ft_push(int flag,  t_stack *a, t_stack *b);
+void		ft_rotate(int flag, t_stack *a, t_stack *b);
 
 #endif

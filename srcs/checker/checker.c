@@ -6,19 +6,44 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:46:28 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/12 18:03:47 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 22:40:42 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/checker.h"
 
-int		exec_instr(char **inst_list)
+void	exec_instr(char **inst, int i, t_stack *a, t_stack *b)
 {
-	(void)inst_list;
-	return (0);
+	int ac = i;
+	i = -1;
+	while(inst[++i])
+	{
+		if (ft_strcmp(inst[i], "sa") == 0)
+			ft_swap(0, ac, a, b);
+		if (ft_strcmp(inst[i], "sb") == 0)
+			ft_swap(1, ac, a, b);
+		if (ft_strcmp(inst[i], "ss") == 0)
+			ft_swap(2, ac, a, b);
+		// if (ft_strcmp(inst[i], "pa") == 0)
+		// 	ft_push(0, &a, &b);
+		// if (ft_strcmp(inst[i], "pb") == 0)
+		// 	ft_push(1, &a, &b);
+		// if (ft_strcmp(inst[i], "ra") == 0)
+		// 	ft_rotate(0, &a, &b);
+		// if (ft_strcmp(inst[i], "rb") == 0)
+		// 	ft_rotate(1, &a, &b);	
+		// if (ft_strcmp(inst[i], "rr") == 0)
+		// 	ft_rotate(2, &a, &b);
+		// if (ft_strcmp(inst[i], "rra") == 0)
+		// 	ft_rotate(3, &a, &b);
+		// if (ft_strcmp(inst[i], "rrb") == 0)
+		// 	ft_rotate(4, &a, &b);
+		// if (ft_strcmp(inst[i], "rrr") == 0)
+		// 	ft_rotate(5, &a, &b);
+	}
 }
 
-char	**ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
+void	ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
 {
 	int			i;
 
@@ -31,7 +56,6 @@ char	**ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
 		b->stack[i] = 0;
 		i++;
 	}
-	return (0);
 }
 
 int		main(int ac, char **av)
@@ -58,16 +82,18 @@ int		main(int ac, char **av)
 				ft_strdel(input);
 				instr_tab = ft_split(instr_str, ' ');
 				ft_strdel(instr_str);
-				exec_instr(instr_tab);
+				exec_instr(instr_tab, ac, &a, &b); // ac / -1
 				ft_tabdel(&instr_tab);
 				break;
 			}
 			else
 			{
-				instr_str_tmp = &*instr_str;
 				if (ft_is_instruction(input) == 0)
+				{
+					instr_str_tmp = &*instr_str;
 					instr_str = ft_strjoin_cust(instr_str_tmp, input);
-				ft_strdel(instr_str_tmp);
+					ft_strdel(instr_str_tmp);
+				}
 			}
 			ft_strdel(input);
 		}
@@ -81,8 +107,8 @@ int		main(int ac, char **av)
 	return (0);
 }
 
-//sa :swap a - swap the first 2 elements at the top of stacka. Do nothing if thereis only one or no elements).
-//sb :swap b - swap the first 2 elements at the top of stackb. Do nothing if thereis only one or no elements).
+//sa :swap a - swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements).
+//sb :swap b - swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements).
 //ss :sa and sb at the same time.
 //pa :push a - take the first element at the top ofband put it at the top of a. Do nothing if b is empty.
 //pb :push b - take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
