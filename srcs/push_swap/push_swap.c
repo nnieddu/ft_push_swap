@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:48:48 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/14 11:22:52 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 11:37:06 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,4 @@ int	main(int ac, char **av)
 	else
 		ft_swap_algo(ac, av);
 	return (0);
-}
+} 
