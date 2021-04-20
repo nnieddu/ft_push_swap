@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:04:39 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/13 16:41:22 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/20 14:02:03 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_swap(int flag, t_stack *a, t_stack *b)
 		tmp = b->stack[0];
 		b->stack[0] = b->stack[1];
 		b->stack[1] = tmp;
-	}	
+	}
 }
 
 void	ft_push(t_stack *a, t_stack *b)
@@ -45,7 +45,7 @@ void	ft_push(t_stack *a, t_stack *b)
 		tmp[i] = b->stack[i - 1];
 		i++;
 	}
-	free(&*b->stack);
+	free(b->stack);
 	b->stack = tmp;
 	i = 0;
 	tmp = malloc(sizeof(int) * a->size);
@@ -54,7 +54,7 @@ void	ft_push(t_stack *a, t_stack *b)
 		tmp[i] = a->stack[i + 1];
 		i++;
 	}
-	free(&*a->stack);
+	free(a->stack);
 	a->stack = tmp;
 }
 
@@ -71,7 +71,7 @@ void	ft_rotate(int flag, t_stack *a, t_stack *b)
 		tmp[i] = a->stack[i + 1];
 		i++;
 	}
-	free(&*a->stack);
+	free(a->stack);
 	a->stack = tmp;
 	if (flag == 1)
 		ft_rotate(0, b, NULL);
@@ -90,7 +90,7 @@ void	ft_reverse_rotate(int flag, t_stack *a, t_stack *b)
 		tmp[i + 1] = a->stack[i];
 		i++;
 	}
-	free(&*a->stack);
+	free(a->stack);
 	a->stack = tmp;
 	if (flag == 1)
 		ft_reverse_rotate(0, b, NULL);

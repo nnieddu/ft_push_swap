@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:46:28 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/13 16:53:22 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/19 11:21:51 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,16 @@ void	ft_exec_loop(t_stack *a, t_stack *b, char *instr_str)
 	char		*instr_str_tmp;
 	char		**instr_tab;
 
-	while (1)
+	while ((input = ft_get_input(0, NULL)))
 	{
-		input = ft_get_input(0, NULL);
-		if (input[0] == 0 && instr_str != NULL)
-		{
-			ft_strdel(input);
-			instr_tab = ft_split(instr_str, ' ');
-			ft_strdel(instr_str);
-			exec_instr(instr_tab, -1, a, b);
-			ft_tabdel(&instr_tab);
-			break ;
-		}
-		else
-			ft_join_instrs(&input, &instr_str_tmp, &instr_str);
+		ft_join_instrs(&input, &instr_str_tmp, &instr_str);
 		ft_strdel(input);
 	}
+	ft_strdel(input);
+	instr_tab = ft_split(instr_str, ' ');
+	ft_strdel(instr_str);
+	exec_instr(instr_tab, -1, a, b);
+	ft_tabdel(&instr_tab);
 }
 
 int	main(int ac, char **av)

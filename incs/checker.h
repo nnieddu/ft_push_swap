@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:44:59 by cmalfroy          #+#    #+#             */
-/*   Updated: 2021/04/14 10:19:56 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/20 15:44:46 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct s_stack
 {
 	int			*stack;
 	int			size;
+	int			smallest;
+	int			bigest;
 }				t_stack;
 
 long long	ft_atoi_big(const char *str);
@@ -31,5 +33,9 @@ char		*ft_strjoin_cust(char *s1, char const *s2);
 void		ft_tabdel(char ***tab);
 int			ft_is_sorted_num(t_stack a);
 void		exec_instr(char **inst, int i, t_stack *a, t_stack *b);
+void	ft_swap(int flag, t_stack *a, t_stack *b);
+void	ft_push(t_stack *a, t_stack *b);
+void	ft_rotate(int flag, t_stack *a, t_stack *b);
+void	ft_reverse_rotate(int flag, t_stack *a, t_stack *b);
 
 #endif
