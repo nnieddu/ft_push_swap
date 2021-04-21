@@ -6,90 +6,82 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 15:08:25 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/20 20:08:39 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 11:43:51 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/push_swap.h"
 
-int	ft_is_lowest(t_stack *a)
+void	ft_is_lowest(t_stack *a)
 {
 	int i;
-	int	poz;
 
 	i = -1;
-	poz = 0;
-	a->smallest = a->stack[0];
+	a->lowest = a->stack[0];
+	a->plowest = 0;
 	while (++i < a->size)
 	{
-		if (a->stack[i] < a->smallest)
+		if (a->stack[i] < a->lowest)
 		{
-			a->smallest = a->stack[i];
-			poz = i;
+			a->lowest = a->stack[i];
+			a->plowest = i;
 		}
 	}
-	return (poz);
-}
-
-int	ft_is_lowest_n(t_stack *a)
-{
-	int i;
-	int	poz;
-
 	i = -1;
-	poz = 0;	
-	i = -1;
-	poz = 0;
-	a->smallest_n = a->stack[1];
+	if (a->stack[0] == a->lowest)
+	{
+		a->lowest_n = a->stack[1];
+		a->plowest_n = 1;
+	}
+	else
+	{
+		a->plowest_n = 0;
+		a->lowest_n = a->stack[0];
+	}
 	while (++i < a->size)
 	{
-		if (a->stack[i] < a->smallest_n && a->stack[i] != a->smallest)
+		if (a->stack[i] < a->lowest_n && a->stack[i] != a->lowest)
 		{
-			a->smallest_n = a->stack[i];
-			poz = i;
+			a->lowest_n = a->stack[i];
+			a->plowest_n = i;
 		}
 	}
-	return (poz);
 }
 
-
-int	ft_is_bigest_n(t_stack *a)
+void	ft_is_bigest(t_stack *a)
 {
 	int i;
-	int	poz;
 
 	i = -1;
-	poz = 0;
-	a->bigest_n = a->stack[1];
-	while (++i < a->size)
-	{
-		printf("TEST\n");
-		if (a->stack[i] > a->bigest_n && a->stack[i] != a->bigest)
-		{
-			a->bigest_n = a->stack[i];
-			poz = i;
-		}
-	}
-	return (poz);
-}
-
-int	ft_is_bigest(t_stack *a)
-{
-	int i;
-	int	poz;
-
-	i = -1;
-	poz = 0;
 	a->bigest = a->stack[0];
+	a->pbigest = 0;
 	while (++i < a->size)
 	{
 		if (a->stack[i] > a->bigest)
 		{
 			a->bigest = a->stack[i];
-			poz = i;
+			a->pbigest = i;
 		}
 	}
-	return (poz);
+	i = -1;
+	if (a->stack[0] == a->bigest)
+	{
+		a->bigest_n = a->stack[1];
+		a->pbigest_n = 1;
+	}
+	else
+	{
+		a->bigest_n = a->stack[0];
+		a->pbigest_n = 1;
+	}
+	while (++i < a->size)
+	{
+		if (a->stack[i] > a->bigest_n && a->stack[i] != a->bigest)
+		{
+			a->bigest_n = a->stack[i];
+			a->pbigest_n = i;
+		}
+	}
 }
 
 void	exec_instru(char *inst, t_stack *a, t_stack *b)
@@ -123,29 +115,30 @@ void	exec_instru(char *inst, t_stack *a, t_stack *b)
 
 void	ft_five_num(t_stack *a, t_stack *b)
 {
-	(void)b;
-	// while (a->stack[0] != ft_is_lowest(a))
-	dprintf(2, "poz1[%d]\n", ft_is_lowest(a));
-	dprintf(2, "poz2[%d]\n", ft_is_lowest_n(a));
-	dprintf(2, "s[%d]\n", a->smallest);
-	dprintf(2, "sn[%d]\n\n", a->smallest_n);
-	dprintf(2, "pozb1[%d]\n", ft_is_bigest(a));
-	dprintf(2, "pozb2[%d]\n", ft_is_bigest_n(a));
-	dprintf(2, "b[%d]\n", a->bigest);
-	dprintf(2, "bn[%d]\n\n", a->bigest_n);
-	// while (a->stack[0] != 4)
-	// 	exec_instru("ra", a, b);
-	// exec_instru("pb", a, b);
-	// while (a->stack[0] != 5)
-	// 	exec_instru("ra", a, b);
-	// exec_instru("pb", a, b);
-	// ft_three_num(a);
-	// exec_instru("pa", a, b);
-	// exec_instru("pa", a, b);
-	// exec_instru("ra", a, b);
-	// exec_instru("ra", a, b);
-	dprintf(2, "a = %d %d %d %d %d\n", a->stack[0], a->stack[1], a->stack[2], a->stack[3], a->stack[4]);
-	// dprintf(2, "b = %d %d %d %d %d %d %d\n", b->stack[0], b->stack[1], b->stack[2], b->stack[3], b->stack[4], b->stack[5], b->stack[6]);
+	if (a->lowest_n == 3 || a->lowest == 3)
+	{
+		while (a->stack[0] != a->bigest_n)
+			exec_instru("ra", a, b);
+		exec_instru("pb", a, b);
+		while (a->stack[0] != a->bigest)
+			exec_instru("ra", a, b);
+		exec_instru("pb", a, b);
+		ft_three_num(a);
+		exec_instru("pa", a, b);
+		exec_instru("pa", a, b);
+		exec_instru("ra", a, b);
+		exec_instru("ra", a, b);
+		return ;
+	}
+	while (a->stack[0] != a->lowest)
+		exec_instru("ra", a, b);
+	exec_instru("pb", a, b);
+	while (a->stack[0] != a->lowest_n)
+		exec_instru("ra", a, b);
+	exec_instru("pb", a, b);
+	ft_three_num(a);
+	exec_instru("pa", a, b);
+	exec_instru("pa", a, b);	
 }
 
 void	ft_three_num(t_stack *a)

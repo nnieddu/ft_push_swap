@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:44:59 by cmalfroy          #+#    #+#             */
-/*   Updated: 2021/04/20 19:50:35 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/21 10:51:21 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ typedef struct s_stack
 {
 	int			*stack;
 	int			size;
-	int			smallest;
-	int			smallest_n;
+	int			lowest;
+	int			lowest_n;
+	int			plowest;
+	int			plowest_n;
 	int			bigest;
 	int			bigest_n;
+	int			pbigest;
+	int			pbigest_n;
 }				t_stack;
 
 long long	ft_atoi_big(const char *str);
