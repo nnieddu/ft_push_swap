@@ -6,7 +6,7 @@
 #    By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/08 14:35:45 by ninieddu          #+#    #+#              #
-#    Updated: 2021/04/20 15:41:29 by ninieddu         ###   ########lyon.fr    #
+#    Updated: 2021/04/21 12:00:54 by ninieddu         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,9 @@ INCS_CHECKER		=	checker.h
 SRCS				=	push_swap.c \
 						errors.c \
 						exec.c \
-						three_num.c \
+						algo.c \
+						three_or_five.c \
+						utils_ps.c \
 						utils.c
 						
 SRCS_CHECKER		=	checker.c \

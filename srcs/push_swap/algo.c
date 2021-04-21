@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/08 08:48:42 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/21 15:38:06 by ninieddu         ###   ########lyon.fr   */
+/*   Created: 2021/04/21 11:57:06 by ninieddu          #+#    #+#             */
+/*   Updated: 2021/04/21 16:00:57 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PUSH_SWAP_H
-# define FT_PUSH_SWAP_H
+#include "../../incs/push_swap.h"
 
-# include "../srcs/ext/ft_printf/ft_printf.h"
-# include "../srcs/ext/libft/libft.h"
-# include "../incs/checker.h"
-
-void    ft_three_num(t_stack *a);
-void	ft_five_num(t_stack *a, t_stack *b);
-void	exec_instru(char *inst, t_stack *a, t_stack *b);
-void	ft_is_bigest(t_stack *a);
-void	ft_is_lowest(t_stack *a);
-void    ft_algo(t_stack *a, t_stack *b);
-
-#endif
+void    ft_algo(t_stack *a, t_stack *b)
+{
+	int i = a->size;
+	while(i > 1)
+	{
+		while (a->stack[0] != a->lowest)
+			exec_instru("ra", a, b);
+		exec_instru("pb", a, b); 
+		i--;
+		ft_is_lowest(a);
+	}
+	i = b->size;
+	while (i > 0)
+	{
+		exec_instru("pa", a, b); 
+		i--;
+	}
+}
