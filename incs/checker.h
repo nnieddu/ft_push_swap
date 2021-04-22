@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 13:44:59 by cmalfroy          #+#    #+#             */
-/*   Updated: 2021/04/21 12:37:28 by ninieddu         ###   ########lyon.fr   */
+/*   Created: 2018/02/26 13:44:59 by ninieddu          #+#    #+#             */
+/*   Updated: 2021/04/22 15:16:29 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ typedef struct s_stack
 	int			bigest_n;
 	int			pbigest;
 	int			pbigest_n;
-	int			first_lap;
+
+	int			npush;
+	int			nrotate;
 }				t_stack;
 
 long long	ft_atoi_big(const char *str);
