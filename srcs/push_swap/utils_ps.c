@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:01:23 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/21 12:01:39 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/22 20:36:18 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,4 @@ void	exec_instru(char *inst, t_stack *a, t_stack *b)
 		ft_reverse_rotate(1, a, b);
 	ft_putstr_fd(inst, 1);
 	ft_putstr_fd("\n", 1);
-	
 }
