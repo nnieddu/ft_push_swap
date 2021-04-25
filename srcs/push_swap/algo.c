@@ -6,153 +6,125 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:17:14 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/22 20:43:32 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/25 14:39:02 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/push_swap.h"
 
-int	partition(t_stack *a, t_stack *b, int beg, int end)
+void	ft_algo_b(t_stack *a, t_stack *b)
 {
-	int	left;
-	int	right;
-	int	temp; 
-	int	temploc; 
-	int	loc;
-	int	flag;
-
-	loc = left = beg;
-	right = end;
-	flag = 0;
-	while(flag != 1)
-	{
-		while ((a->stack[loc] <= a->stack[right]) && (loc != right))
-			right--;
-		if (loc == right)
-			flag = 1;
-		else if (a->stack[loc] > a->stack[right])
+	int i = a->size - 1;
+	while (i > 0)
+	{	
+		while (a->stack[0] != a->bigest)
 		{
-			temp = right;
-			temploc = loc;
-			while (temploc > 0)
-			{
+			if (a->pbigest <= a->size / 2)
 				exec_instru("ra", a, b);
-				a->nrotate++;
-				temploc--;
-			}
-			exec_instru("pb", a, b);
-			while (a->nrotate > 0)
-			{
-				a->nrotate--;
+			else
 				exec_instru("rra", a, b);
-			}			
-			a->npush++;
-			while (temp - 1 > 0)
-			{
-				a->nrotate++;
-				temp--;
-				exec_instru("ra", a, b);
-			}
-			exec_instru("pb", a, b);
-			exec_instru("sb", a, b);
-			exec_instru("pa", a, b);
-			while (a->nrotate > 0)
-			{
-				a->nrotate--;
-				exec_instru("rra", a, b);
-			}
-			temp = loc;
-			while (temp > 0)
-			{
-				temp--;
-				exec_instru("ra", a, b);
-			}
-			exec_instru("pa", a, b);
-			temp = loc;
-			while (temp > 0)
-			{
-				temp--;
-				exec_instru("rra", a, b);
-			}			
-            loc = right; 
-			a->nrotate = 0;
 		}
-		if (flag != 1)
-		{
-			while ((a->stack[loc] >= a->stack[left]) && (loc != left))
-				left++;
-			if(loc == left)
-				flag = 1;
-			else if(a->stack[loc] < a->stack[left])
-			{
-				temp = left;
-				temploc = loc;
-				while (temploc > 0)
-				{
-					exec_instru("ra", a, b);
-					a->nrotate++;
-					temploc--;
-				}
-				exec_instru("pb", a, b);
-				while (a->nrotate > 0)
-				{
-					a->nrotate--;
-					exec_instru("rra", a, b);
-				}			
-				a->npush++;
-				while (temp - 1 > 0)
-				{
-					a->nrotate++;
-					temp--;
-					exec_instru("ra", a, b);
-				}
-				exec_instru("pb", a, b);
-				exec_instru("sb", a, b);
-				exec_instru("pa", a, b);
-				while (a->nrotate > 0)
-				{
-					a->nrotate--;
-					exec_instru("rra", a, b);
-				}
-				temp = loc;
-				while (temp > 0)
-				{
-					temp--;
-					exec_instru("ra", a, b);
-				}
-				exec_instru("pa", a, b);
-				temp = loc;
-				while (temp > 0)
-				{
-					temp--;
-					exec_instru("rra", a, b);
-				}			
-				loc = left;
-			}
-		}
+		exec_instru("pb", a, b); 
+		i--;
+		ft_is_bigest(a);
 	}
-	return loc;
+	i = b->size;
+	while (i > 0)
+	{
+		exec_instru("ra", a, b);
+		exec_instru("pa", a, b); 
+		i--;
+	}
+	exec_instru("ra", a, b);
 }
 
-void	quickSort(t_stack *a, t_stack *b, int beg, int end)
+int		ft_is_best_move(t_stack *a)
 {
-	int	loc;
-	if (beg < end)
+	int i;
+	int x;
+	int y;
+
+	i = 0;
+	x = 0;
+	while (i < a->size - 1)
 	{
-		loc = partition(a, b, beg, end);
-		quickSort(a, b, beg, loc - 1);
-		quickSort(a, b, loc + 1, end);
+		if (a->stack[i] < a->stack[i + 1])
+			x++;
+		i++;
 	}
+	i = 0;
+	while (i < a->size - 1)
+	{
+		if (a->stack[i] > a->stack[i + 1])
+			y++;
+		i++;
+	}
+	if (x > y)
+		return (0);
+	else
+		return (1);
 }
 
+int		ft_is_sort_rev(t_stack *a)
+{
+	int	i;
+
+	if (a->size <= 1)
+		return (0);
+	i = 0;
+	while (i < a->size - 1)
+	{
+		if (a->stack[i] > a->stack[i + 1])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	ft_algo_s(t_stack *a, t_stack *b)
+{
+	int i = a->size - 1;
+	{
+		while (i > 0 && ft_is_sort_rev(a) == 1)
+		{
+			while (a->stack[0] != a->lowest && ft_is_sort_rev(a) == 1)
+			{
+				if (a->plowest_n == 0 && a->plowest == 1)
+					exec_instru("sa", a, b);
+				else if (a->plowest <= a->size / 2)
+					exec_instru("ra", a, b);
+				else
+					exec_instru("rra", a, b);
+			}
+			if (ft_is_sort_rev(a) == 1)
+				exec_instru("pb", a, b); 
+			i--;
+			ft_is_lowest(a);
+		}
+	}
+	i = b->size;
+	while (i > 0)
+	{
+		exec_instru("pa", a, b); 
+		i--;
+	}	
+}
 
 void	ft_algo(t_stack *a, t_stack *b)
 {
-	a->nrotate = 0;
-	a->npush = 0;
+	
+	// ft_algo_c(a, b);
+	if (ft_is_best_move(a) == 1)
+		ft_algo_s(a, b);
+	else
+		ft_algo_b(a, b);
 	// int i;
-	quickSort(a, b, 0, a->size - 1);
-	// printf("\n The sorted array is: \n");
+	// dprintf(2, "\nThe sorted array is: \n");
 	// for(i=0;i<a->size;i++)
-	// printf("%d ", a->stack[i]);
+	// dprintf(2, "%d ", a->stack[i]);	
+	// if (ft_is_sorted_num(*a) == 1)
+	// 	ft_putstr_fd("KO\n", 2);
+	// else
+	// 	ft_putstr_fd("OK\n", 2);	
 }
+
