@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:44:59 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/24 08:20:56 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/26 17:28:43 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ typedef struct s_stack
 	int			bigest_n;
 	int			pbigest;
 	int			pbigest_n;
+
 	int			first_lap;
+
 	int			npush;
 	int			nrotate;
 }				t_stack;

@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:01:23 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/25 14:37:48 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/26 16:21:52 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,6 @@ void	ft_is_bigest(t_stack *a)
 
 void	exec_instru(char *inst, t_stack *a, t_stack *b)
 {
-	// int i;
-	// dprintf(2, "\nA = ");
-	// for(i=0;i<a->size;i++)
-	// dprintf(2, "%d ", a->stack[i]);	
-	// dprintf(2, "\n");
-	// dprintf(2, "B = ");
-	// for(i=0;i<b->size;i++)
-	// dprintf(2, "%d ", b->stack[i]);	
-	// dprintf(2, "\n");
 
 	if (ft_strcmp(inst, "sa") == 0)
 		ft_swap(0, a, b);
@@ -120,4 +111,13 @@ void	exec_instru(char *inst, t_stack *a, t_stack *b)
 		ft_reverse_rotate(1, a, b);
 	ft_putstr_fd(inst, 1); ////////
 	ft_putstr_fd("\n", 1); /////////
+	// int i;
+	// dprintf(2, "\nA = ");
+	// for(i=0;i<a->size;i++)
+	// dprintf(2, "%d ", a->stack[i]);	
+	// dprintf(2, "\n");
+	// dprintf(2, "B = ");
+	// for(i=0;i<b->size;i++)
+	// dprintf(2, "%d ", b->stack[i]);	
+	// dprintf(2, "\n");
 }
