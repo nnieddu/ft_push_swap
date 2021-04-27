@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:48:48 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/24 00:08:02 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 12:41:12 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ void	ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
 
 	i = 0;
 	a->stack = malloc(sizeof(int) * ac);
+	// if (a->stack == NULL)
+	// 	ft_crash(a, b);
 	b->stack = malloc(sizeof(int) * ac);
+	// if (a->stack == NULL)
+	// 	ft_crash(a, b);
 	a->size = ac - 1;
 	b->size = 0;
 	while (i < ac - 1)
@@ -45,14 +49,34 @@ int	main(int ac, char **av)
 	else if (ft_is_sorted(ac, av) == 1)
 	{
 		ft_stacks_maker(av, ac, &a, &b);
-		// if (ac == 4)
-		// 	ft_three_num(&a);
-		// if (ac == 6)
-			// ft_five_num(&a, &b);
-		// if (ac != 4 && ac != 6)
-		ft_algo(&a, &b);
+		if (ac == 4)
+			ft_three_num(&a);
+		// if (ac > 4 && ac <= 80)
+		// 	ft_algo_s(&a, &b);
+		// if (ac > 80)
+			ft_algo(&a, &b);
+			// ft_algo_s(&a, &b);
+		
+		// int i;
+		// for(i=0;i<a.size;i++)
+		// dprintf(2, "%d ", a.stack[i]);	
+		// if (ft_is_sorted_num(a) == 1)
+		// 	ft_putstr_fd("KO\n", 2);
+		// else
+		// 	ft_putstr_fd("OK\n", 2);	
+	
 		free(a.stack);
 		free(b.stack);
 	}
 	return (0);
 }
+    // (6698) ra
+    // (5658) rra
+    // (971) pb
+    // (971) pa
+    // (7) sa
+
+    // (4250) ra
+    // (3250) rra
+    // (2909) pb
+    // (2909) pa

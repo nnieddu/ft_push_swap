@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:53:05 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/14 10:45:17 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/26 20:48:30 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,23 @@ int	ft_is_sorted(int ac, char **av)
 		return (1);
 	return (0);
 }
+
+int		ft_is_sorted_num_rev(t_stack *a)
+{
+	int	i;
+
+	if (a->size <= 1)
+		return (0);
+	i = a->size - 1;
+	while (i > 0)
+	{
+		if (a->stack[i] > a->stack[i - 1])
+			return (1);
+		i--;
+	}
+	return (0);
+}
+
 
 int 	ft_is_sorted_num(t_stack a)
 {

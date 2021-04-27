@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:46:28 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/22 20:36:54 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 12:42:01 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ void	ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
 
 	i = 0;
 	a->stack = malloc(sizeof(int) * ac);
+	// if (a->stack == NULL)
+	// 	ft_crash(a, b);
 	b->stack = malloc(sizeof(int) * ac);
+	// if (a->stack == NULL)
+	// 	ft_crash(a, b);
 	a->size = ac - 1;
 	b->size = 0;
 	while (i < ac - 1)

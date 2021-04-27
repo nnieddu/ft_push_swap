@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:04:39 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/26 10:42:25 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 12:41:39 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	ft_push(t_stack *a, t_stack *b)
 	a->size--;
 	b->size++;
 	tmp = malloc(sizeof(int) * b->size);
+	// if (tmp == NULL)
+	// 	ft_crash(a, b);	
 	tmp[0] = a->stack[0];
 	while (i < b->size)
 	{
@@ -49,6 +51,8 @@ void	ft_push(t_stack *a, t_stack *b)
 	b->stack = tmp;
 	i = 0;
 	tmp = malloc(sizeof(int) * a->size);
+	// if (tmp == NULL)
+	// 	ft_crash(a, b);
 	while (i < a->size)
 	{
 		tmp[i] = a->stack[i + 1];
@@ -65,6 +69,8 @@ void	ft_rotate(int flag, t_stack *a, t_stack *b)
 
 	i = 0;
 	tmp = malloc(sizeof(int) * a->size);
+	// if (tmp == NULL)
+	// 	ft_crash(a, b);
 	tmp[a->size - 1] = a->stack[i];
 	while (i < a->size - 1)
 	{
@@ -84,6 +90,8 @@ void	ft_reverse_rotate(int flag, t_stack *a, t_stack *b)
 
 	i = 0;
 	tmp = malloc(sizeof(int) * a->size);
+	// if (tmp == NULL)
+	// 	ft_crash(a, b);
 	tmp[i] = a->stack[a->size - 1];
 	while (i < a->size - 1)
 	{
@@ -122,15 +130,5 @@ void	exec_instr(char **inst, int i, t_stack *a, t_stack *b)
 			ft_reverse_rotate(0, b, NULL);
 		if (ft_strcmp(inst[i], "rrr") == 0)
 			ft_reverse_rotate(1, a, b);
-		// int j;
-		// dprintf(2, "%s\n", inst[i]);
-		// dprintf(2, "\nA = ");
-		// for(j=0;j<a->size;j++)
-		// dprintf(2, "%d ", a->stack[j]);	
-		// dprintf(2, "\n");
-		// dprintf(2, "B = ");
-		// for(j=0;j<b->size;j++)
-		// dprintf(2, "%d ", b->stack[j]);	
-		// dprintf(2, "\n");	
 	}
 }

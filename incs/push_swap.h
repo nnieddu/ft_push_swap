@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:48:42 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/22 15:10:57 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 10:59:23 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 # include "../incs/checker.h"
 
 void    ft_three_num(t_stack *a);
-void	ft_five_num(t_stack *a, t_stack *b);
 void	exec_instru(char *inst, t_stack *a, t_stack *b);
 void	ft_is_bigest(t_stack *a);
 void	ft_is_lowest(t_stack *a);
 void    ft_algo(t_stack *a, t_stack *b);
+int 	ft_is_sorted_num_rev(t_stack *a);
+void	ft_algo_s(t_stack *a, t_stack *b);
 
 #endif

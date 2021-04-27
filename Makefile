@@ -6,7 +6,7 @@
 #    By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/08 14:35:45 by ninieddu          #+#    #+#              #
-#    Updated: 2021/04/22 10:38:09 by ninieddu         ###   ########lyon.fr    #
+#    Updated: 2021/04/27 11:19:58 by ninieddu         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,6 @@ SRCS				=	push_swap.c \
 						errors.c \
 						exec.c \
 						algo.c \
-						three_or_five.c \
 						utils_ps.c \
 						utils.c
 						
