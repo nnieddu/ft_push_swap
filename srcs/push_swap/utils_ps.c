@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:01:23 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/27 12:57:11 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 14:18:36 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,13 +153,13 @@ void	exec_instru(char *inst, t_stack *a, t_stack *b)
 		ft_reverse_rotate(1, a, b);
 	}
 	
-	// int i;
-	// dprintf(2, "\nA = ");
-	// for(i=0;i<a->size;i++)
-	// dprintf(2, "%d ", a->stack[i]);	
-	// dprintf(2, "\n");
-	// dprintf(2, "B = ");
-	// for(i=0;i<b->size;i++)
-	// dprintf(2, "%d ", b->stack[i]);	
-	// dprintf(2, "\n");
+	int i;
+	dprintf(2, "\nA = ");
+	for(i=0;i<a->size;i++)
+	dprintf(2, "%d ", a->stack[i]);	
+	dprintf(2, "\n");
+	dprintf(2, "B = ");
+	for(i=0;i<b->size;i++)
+	dprintf(2, "%d ", b->stack[i]);	
+	dprintf(2, "\n");
 }

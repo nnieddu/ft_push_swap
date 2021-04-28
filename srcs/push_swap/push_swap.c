@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:48:48 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/27 12:41:12 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 10:22:10 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,16 @@ int	main(int ac, char **av)
 		// if (ac > 80)
 			ft_algo(&a, &b);
 			// ft_algo_s(&a, &b);
-		
-		// int i;
-		// for(i=0;i<a.size;i++)
-		// dprintf(2, "%d ", a.stack[i]);	
-		// if (ft_is_sorted_num(a) == 1)
-		// 	ft_putstr_fd("KO\n", 2);
-		// else
-		// 	ft_putstr_fd("OK\n", 2);	
+		int i;
+		for(i=0;i<a.size;i++)
+		dprintf(2, "%d ", a.stack[i]);	
+		if (ft_is_sorted_num(&a, a.size) == 1)
+			ft_putstr_fd("KO\n", 2);
+		else
+			ft_putstr_fd("OK\n", 2);	
 	
 		free(a.stack);
 		free(b.stack);
 	}
 	return (0);
 }
-    // (6698) ra
-    // (5658) rra
-    // (971) pb
-    // (971) pa
-    // (7) sa
-
-    // (4250) ra
-    // (3250) rra
-    // (2909) pb
-    // (2909) pa

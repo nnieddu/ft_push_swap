@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:46:28 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/27 12:42:01 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 10:36:22 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ int	main(int ac, char **av)
 	{
 		ft_stacks_maker(av, ac, &a, &b);
 		ft_exec_loop(&a, &b, NULL);
-		if (ft_is_sorted_num(a) == 1)
+		if (ft_is_sorted_num(&a, a.size) == 1) ////
 			ft_putstr_fd("KO\n", 1);
 		else
-			ft_putstr_fd("OK\n", 1);
+			ft_putstr_fd("OK\n", 1); /////
 		free(a.stack);
 		free(b.stack);
 	}

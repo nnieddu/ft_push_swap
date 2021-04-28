@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:53:05 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/26 20:48:30 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 10:35:49 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,20 @@ int		ft_is_sorted_num_rev(t_stack *a)
 }
 
 
-int 	ft_is_sorted_num(t_stack a)
+int 	ft_is_sorted_num(t_stack *a, int size)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 1;
-	while (i < a.size)
+	if (size == 1)
+		return (0);
+	while (i < size - 1)
 	{
-		while (j < a.size && a.stack[i] < a.stack[j])
-			j++;
-		if (j == a.size)
-		{
-			i++;
-			j = i + 1;
-		}
-		else
-			break ;
+		if (a->stack[i] > a->stack[i + 1])
+			return (1);
+		i++;
 	}
-	if (j < a.size)
-		return (1);
-	return (0);
+	return (0);	
 }
 
 int 	ft_is_number(char *av)

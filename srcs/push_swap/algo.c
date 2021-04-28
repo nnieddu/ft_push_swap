@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:17:14 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/27 13:04:42 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 19:20:44 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,25 @@ void	ft_three_num(t_stack *a)
 	}
 }
 
-int		ft_is_sort_rev(t_stack *a)
+int	ft_compute_pivot(t_stack *s, int size)
 {
 	int	i;
+	int	j;
+	int	total;
 
-	if (a->size < 2)
-		return (0);
-	i = 0;
-	while (i < a->size - 1)
-	{
-		if (a->stack[i] > a->stack[i + 1])
-			return (1);
-		i++;
-	}
-	return (0);
+	i = -1;
+	j = -1;
+	total = 0;
+	while (++j != size)
+		total += s->stack[++i];
+	return (total / size);
 }
 
 void	ft_algo_s(t_stack *a, t_stack *b)
 {
 	int i = a->size - 1;
 	{
-		while (i > 0 && ft_is_sort_rev(a) == 1)
+		while (i > 0 && ft_is_sorted_num_rev(a) == 1)
 		{
 			while (a->stack[0] != a->lowest)
 			{
@@ -78,24 +76,79 @@ void	ft_algo_s(t_stack *a, t_stack *b)
 	}
 }
 
-void	ft_algo(t_stack *a, t_stack *b)
+void	ft_algo_s_opti(t_stack *a, t_stack *b)
 {
-	ft_algo_s(a, b);
-	// int i;
-	// dprintf(2, "\nThe sorted array is: \n");
-	// for(i=0;i<a->size;i++)
-	// dprintf(2, "%d ", a->stack[i]);	
-	// if (ft_is_sorted_num(*a) == 1)
-	// 	ft_putstr_fd("KO\n", 2);
-	// else
-	// 	ft_putstr_fd("OK\n", 2);	
+	exec_instru("pb", a, b);
+	exec_instru("pb", a, b);
+	if (b->stack[0] < b->stack[1])
+		exec_instru("sb", a, b);
+	int flag = 0;
+	int rota = 0;
+	int i = a->size / 2;
+	while (i > 0)
+	{
+		while (a->stack[0] < b->stack[0]) // && a->stack[0] > b->stack[b->size])
+		{
+			ft_is_lowest(b);
+			if (a->stack[0] < b->lowest)
+			{
+				exec_instru("pb", a, b);
+				exec_instru("rb", a, b);
+				flag = 1;
+				break;
+			}
+			exec_instru("rb", a, b);
+			rota++;
+		}
+		if (flag == 0)
+			exec_instru("pb", a, b);
+		while (rota > 0)
+		{
+			exec_instru("rrb", a, b);
+			rota--;
+		}
+		flag = 0;
+		i--;
+	}
+	i = a->size;
+	rota = 0;
+	while (i > 0)
+	{
+		ft_is_lowest(b);
+		ft_is_bigest(b);
+		while (a->stack[0] < b->stack[0] && a->stack[0] > b->lowest && a->stack[0] > b->bigest)
+		{
+			exec_instru("rb", a, b);
+			rota++;
+		}
+		exec_instru("pb", a, b);
+		if (b->stack[0] < b->lowest)
+			exec_instru("rb", a, b);
+		i--;
+	}
+	while (b->stack[0] != b->bigest)
+		exec_instru("rb", a, b);
+	exec_instru("pa", a, b);
+	ft_is_bigest(b);
+	while (b->stack[0] != b->bigest)
+		exec_instru("rb", a, b);
+	
+	i = b->size;
+	while (i > 0)
+	{
+		exec_instru("pa", a, b); 
+		i--;
+	}
 }
 
 
+void	ft_algo(t_stack *a, t_stack *b)
+{
+	ft_algo_s_opti(a, b);
+}
 
 
-
-// int	ft_compute_pivot(t_stack *s, int size)
+// int	ft_compute_pivot_test(t_stack *s, int size)
 // {
 // 	int	i;
 // 	int	j;
@@ -107,25 +160,6 @@ void	ft_algo(t_stack *a, t_stack *b)
 // 	while (++j != size)
 // 		total += s->stack[++i];
 // 	return (total / size);
-// }
-
-// int		ft_is_chunk_sort(t_stack *a, int size)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	j = 0;
-// 	if (a->size == 1)
-// 		return (0);
-// 	while (j < size)
-// 	{
-// 		if (a->stack[i] > a->stack[i + 1])
-// 			return (1);
-// 		j++;
-// 		i++;
-// 	}
-// 	return (0);
 // }
 
 // void	sort(t_stack *a, t_stack *b, int size)
@@ -166,7 +200,7 @@ void	ft_algo(t_stack *a, t_stack *b)
 // 		exec_instru("ra", a, b);
 // 		return ;
 // 	}
-// 	if (ft_is_chunk_sort(a, size) == 0)
+// 	if (ft_is_sorted_num(a, size) == 0)
 // 	{
 // 		if (ft_is_sorted_num_rev(a) == 1)
 // 		{
