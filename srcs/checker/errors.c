@@ -6,11 +6,24 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:53:05 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/28 10:35:49 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/01 11:22:32 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/checker.h"
+
+void ft_crash(t_stack *a, t_stack *b, int *tmp, char **instr_tab)
+{
+	ft_putstr_fd("The program crash ! [Malloc error]\n", 1);
+	free(a->stack);
+	if (b->stack)
+		free(b->stack);
+	if (instr_tab)
+		ft_tabdel(&instr_tab);
+	if (tmp)
+		free(tmp);
+	exit(-1);
+}
 
 int	ft_is_sorted(int ac, char **av)
 {

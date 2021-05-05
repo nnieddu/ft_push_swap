@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:46:28 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/28 10:36:22 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 15:26:32 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
 
 	i = 0;
 	a->stack = malloc(sizeof(int) * ac);
-	// if (a->stack == NULL)
-	// 	ft_crash(a, b);
+	if (a->stack == NULL)
+		ft_crash(a, NULL, NULL, NULL);
 	b->stack = malloc(sizeof(int) * ac);
-	// if (a->stack == NULL)
-	// 	ft_crash(a, b);
+	if (b->stack == NULL)
+		ft_crash(a, b, NULL, NULL);
 	a->size = ac - 1;
 	b->size = 0;
 	while (i < ac - 1)
@@ -47,14 +47,17 @@ void	ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
 	}
 }
 
-void	ft_join_instrs(char **input, char **instr_str_tmp, char **instr_str)
+int		ft_join_instrs(char **input, char **instr_str_tmp, char **instr_str)
 {
 	if (ft_is_instruction(*input) == 0)
 	{
 		*instr_str_tmp = &**instr_str;
 		*instr_str = ft_strjoin_cust(*instr_str_tmp, *input);
 		ft_strdel(*instr_str_tmp);
+		if (instr_str == NULL)
+			return (-1);
 	}
+	return (0);
 }
 
 void	ft_exec_loop(t_stack *a, t_stack *b, char *instr_str)
@@ -65,12 +68,19 @@ void	ft_exec_loop(t_stack *a, t_stack *b, char *instr_str)
 
 	while ((input = ft_get_input(0, NULL)))
 	{
-		ft_join_instrs(&input, &instr_str_tmp, &instr_str);
+		if (ft_join_instrs(&input, &instr_str_tmp, &instr_str) == -1)
+		{
+			ft_strdel(input);
+			ft_strdel(instr_str);
+			ft_crash(a, b, NULL, NULL);
+		}
 		ft_strdel(input);
 	}
 	ft_strdel(input);
 	instr_tab = ft_split(instr_str, ' ');
 	ft_strdel(instr_str);
+	if (instr_tab == NULL)
+		ft_crash(a, b, NULL, instr_tab);
 	exec_instr(instr_tab, -1, a, b);
 	ft_tabdel(&instr_tab);
 }
@@ -88,10 +98,10 @@ int	main(int ac, char **av)
 	{
 		ft_stacks_maker(av, ac, &a, &b);
 		ft_exec_loop(&a, &b, NULL);
-		if (ft_is_sorted_num(&a, a.size) == 1) ////
+		if (ft_is_sorted_num(&a, a.size) == 1)
 			ft_putstr_fd("KO\n", 1);
 		else
-			ft_putstr_fd("OK\n", 1); /////
+			ft_putstr_fd("OK\n", 1);
 		free(a.stack);
 		free(b.stack);
 	}

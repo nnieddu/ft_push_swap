@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 18:04:39 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/27 12:41:39 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/01 11:27:19 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	ft_push(t_stack *a, t_stack *b)
 	a->size--;
 	b->size++;
 	tmp = malloc(sizeof(int) * b->size);
-	// if (tmp == NULL)
-	// 	ft_crash(a, b);	
+	if (tmp == NULL)
+		ft_crash(a, b, tmp, NULL);
 	tmp[0] = a->stack[0];
 	while (i < b->size)
 	{
@@ -51,8 +51,8 @@ void	ft_push(t_stack *a, t_stack *b)
 	b->stack = tmp;
 	i = 0;
 	tmp = malloc(sizeof(int) * a->size);
-	// if (tmp == NULL)
-	// 	ft_crash(a, b);
+	if (tmp == NULL)
+		ft_crash(a, b, tmp, NULL);
 	while (i < a->size)
 	{
 		tmp[i] = a->stack[i + 1];
@@ -67,18 +67,21 @@ void	ft_rotate(int flag, t_stack *a, t_stack *b)
 	int		*tmp;
 	int		i;
 
-	i = 0;
-	tmp = malloc(sizeof(int) * a->size);
-	// if (tmp == NULL)
-	// 	ft_crash(a, b);
-	tmp[a->size - 1] = a->stack[i];
-	while (i < a->size - 1)
+	if (a->size > 1)
 	{
-		tmp[i] = a->stack[i + 1];
-		i++;
+		i = 0;
+		tmp = malloc(sizeof(int) * a->size);
+		if (tmp == NULL)
+			ft_crash(a, b, tmp, NULL);
+		tmp[a->size - 1] = a->stack[i];
+		while (i < a->size - 1)
+		{
+			tmp[i] = a->stack[i + 1];
+			i++;
+		}
+		free(a->stack);
+		a->stack = tmp;
 	}
-	free(a->stack);
-	a->stack = tmp;
 	if (flag == 1)
 		ft_rotate(0, b, NULL);
 }
@@ -90,8 +93,8 @@ void	ft_reverse_rotate(int flag, t_stack *a, t_stack *b)
 
 	i = 0;
 	tmp = malloc(sizeof(int) * a->size);
-	// if (tmp == NULL)
-	// 	ft_crash(a, b);
+	if (tmp == NULL)
+		ft_crash(a, b, tmp, NULL);
 	tmp[i] = a->stack[a->size - 1];
 	while (i < a->size - 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:53:47 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/19 11:18:24 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/01 11:43:46 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_get_input_next(char **line, char buff[2])
 			*line = ft_strjoin("", "\0");
 		else
 			*line = ft_strjoin("", buff);
-	}	
+	}
 }
 
 char	*ft_get_input(int fd, char *line)
@@ -47,7 +47,11 @@ char	*ft_get_input(int fd, char *line)
 		}
 		ft_get_input_next(&line, buff);
 		if (line == NULL)
+		{
+			free(tmp);
+			free(line);
 			return (NULL);
+		}
 		if (tmp)
 			free(tmp);
 		if (*buff == '\n')

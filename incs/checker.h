@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:44:59 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/04/28 11:27:38 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/01 11:17:04 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,6 @@
 # include "../srcs/ext/ft_printf/ft_printf.h"
 # include "../srcs/ext/ft_get_next_line/get_next_line.h"
 
-
-# define QUARTER frame->quarter
-# define MEDIAN frame->median
-# define THREE_Q frame->three_quarters
-# define BIGGEST frame->biggest
-# define BIG_ROTATE frame->big_rotate
-# define BIG_RROTATE frame->big_rrotate
-# define BIG_FLAG frame->big_flag
-# define SMALLEST frame->smallest
-# define SMALL_ROTATE frame->small_rotate
-# define SMALL_RROTATE frame->small_rrotate
-# define SMALL_FLAG frame->small_flag
-
 typedef struct s_stack
 {
 	int			*stack;
@@ -39,12 +26,7 @@ typedef struct s_stack
 	int			plowest;
 	int			plowest_n;
 	int			bigest;
-	int			bigest_n;
-	int			pbigest;
-	int			pbigest_n;
-
-	int			hold_first;
-	int			hold_second;
+	int			flag;
 }				t_stack;
 
 long long	ft_atoi_big(const char *str);
@@ -59,5 +41,5 @@ void		ft_swap(int flag, t_stack *a, t_stack *b);
 void		ft_push(t_stack *a, t_stack *b);
 void		ft_rotate(int flag, t_stack *a, t_stack *b);
 void		ft_reverse_rotate(int flag, t_stack *a, t_stack *b);
-
+void 		ft_crash(t_stack *a, t_stack *b, int *tmp, char **instr_tab);
 #endif
