@@ -1,9 +1,9 @@
 ## for i in `seq 100`; do ./random.sh && echo; done 
 ## paplay done.wavs
 
-for y in `seq 100`; do
+for y in `seq 1000`; do
 ARG=`ruby -e "puts (0..100).to_a.shuffle.join(' ')"`
-echo $ARG >> moyenne
+# echo $ARG >> moyenne
 ./push_swap $ARG | wc -l >> moyenne
 ./push_swap $ARG | ./checker $ARG >> moyenne
 done

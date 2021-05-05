@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 12:01:23 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/05/05 16:05:11 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/05 17:30:18 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,39 +63,7 @@ void	ft_is_bigest(t_stack *a)
 			a->pbigest = i;
 		}
 	}
-	i = -1;
-	if (a->stack[0] == a->bigest)
-	{
-		a->bigest_n = a->stack[1];
-		a->pbigest_n = 1;
-	}
-	else
-	{
-		a->bigest_n = a->stack[0];
-		a->pbigest_n = 1;
-	}
-	while (++i < a->size)
-	{
-		if (a->stack[i] > a->bigest_n && a->stack[i] != a->bigest)
-		{
-			a->bigest_n = a->stack[i];
-			a->pbigest_n = i;
-		}
-	}
 }
-
-// void	ft_is_bigest(t_stack *a)
-// {
-// 	int i;
-
-// 	i = -1;
-// 	a->bigest = a->stack[0];
-// 	while (++i < a->size)
-// 	{
-// 		if (a->stack[i] > a->bigest)
-// 			a->bigest = a->stack[i];
-// 	}
-// }
 
 void	exec_instru(char *inst, t_stack *a, t_stack *b)
 {

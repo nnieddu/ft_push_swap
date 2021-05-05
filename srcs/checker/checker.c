@@ -6,13 +6,13 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:46:28 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/05/04 15:26:32 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/05 17:54:50 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/checker.h"
 
-int	ft_is_instruction(char *input)
+int			ft_is_instruction(char *input)
 {
 	if (ft_strcmp(input, "sa") == 0 || ft_strcmp(input, "sb") == 0
 		|| ft_strcmp(input, "ss") == 0 || ft_strcmp(input, "pa") == 0
@@ -26,9 +26,9 @@ int	ft_is_instruction(char *input)
 	return (-1);
 }
 
-void	ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
+void		ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
 {
-	int			i;
+	int		i;
 
 	i = 0;
 	a->stack = malloc(sizeof(int) * ac);
@@ -47,7 +47,7 @@ void	ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
 	}
 }
 
-int		ft_join_instrs(char **input, char **instr_str_tmp, char **instr_str)
+int			ft_join_instrs(char **input, char **instr_str_tmp, char **instr_str)
 {
 	if (ft_is_instruction(*input) == 0)
 	{
@@ -60,13 +60,13 @@ int		ft_join_instrs(char **input, char **instr_str_tmp, char **instr_str)
 	return (0);
 }
 
-void	ft_exec_loop(t_stack *a, t_stack *b, char *instr_str)
+void		ft_exec_loop(t_stack *a, t_stack *b, char *instr_str)
 {
-	char		*input;
-	char		*instr_str_tmp;
-	char		**instr_tab;
+	char	*input;
+	char	*instr_str_tmp;
+	char	**instr_tab;
 
-	while ((input = ft_get_input(0, NULL)))
+	while ((input = ft_get_input(0, NULL, NULL)))
 	{
 		if (ft_join_instrs(&input, &instr_str_tmp, &instr_str) == -1)
 		{
@@ -85,10 +85,10 @@ void	ft_exec_loop(t_stack *a, t_stack *b, char *instr_str)
 	ft_tabdel(&instr_tab);
 }
 
-int	main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	t_stack		a;
-	t_stack		b;
+	t_stack	a;
+	t_stack	b;
 
 	if (ac < 2)
 		return (0);

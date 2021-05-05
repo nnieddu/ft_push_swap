@@ -6,7 +6,7 @@
 #    By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/08 14:35:45 by ninieddu          #+#    #+#              #
-#    Updated: 2021/04/27 11:19:58 by ninieddu         ###   ########lyon.fr    #
+#    Updated: 2021/05/05 18:06:40 by ninieddu         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,14 +37,16 @@ INCS_CHECKER		=	checker.h
 
 SRCS				=	push_swap.c \
 						errors.c \
-						exec.c \
-						algo.c \
+						instructions.c \
+						algo_small.c \
+						algo_big.c \
 						utils_ps.c \
 						utils.c
 						
 SRCS_CHECKER		=	checker.c \
 						utils.c \
-						exec.c \
+						utils_exec.c \
+						instructions.c \
 						errors.c
 
 OPATH				=	objs/push_swap/

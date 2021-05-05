@@ -6,15 +6,15 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:48:48 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/05/03 09:51:21 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/05 18:13:47 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/push_swap.h"
 
-void	ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
+void		ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
 {
-	int			i;
+	int		i;
 
 	i = 0;
 	a->stack = malloc(sizeof(int) * ac);
@@ -35,13 +35,13 @@ void	ft_stacks_maker(char **av, int ac, t_stack *a, t_stack *b)
 	ft_is_lowest(a);
 }
 
-int	main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	t_stack		a;
-	t_stack		b;
+	t_stack	a;
+	t_stack	b;
 
 	if (ac < 2)
-		return (0);	
+		return (0);
 	if (ft_is_error(av, ac, 0) == -1)
 		return (-1);
 	ft_stacks_maker(av, ac, &a, &b);
@@ -53,8 +53,8 @@ int	main(int ac, char **av)
 			ft_three_num(&a);
 		else
 			ft_algo(&a, &b);
-		if (ft_is_sorted(ac, av) == 1)	
-			ft_algo_s(&a, &b);
+		if (ft_is_sorted(ac, av) == 1)
+			ft_algo_s(&a, &b, a.size);
 		free(a.stack);
 		free(b.stack);
 	}
