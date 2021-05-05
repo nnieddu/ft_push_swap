@@ -3,7 +3,6 @@
 
 for y in `seq 100`; do
 ARG=`ruby -e "puts (0..100).to_a.shuffle.join(' ')"`
-# ARG2=`ruby -e "puts (150..550).to_a.shuffle.join(' ')"`
 echo $ARG >> moyenne
 ./push_swap $ARG | wc -l >> moyenne
 ./push_swap $ARG | ./checker $ARG >> moyenne
