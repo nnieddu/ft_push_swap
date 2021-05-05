@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:17:14 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/05/01 13:53:04 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/05 16:32:34 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,48 +84,16 @@ int	ft_compute_pivot(t_stack *s, int size)
 	return (total / size);
 }
 
-int	getTop(t_stack *s)
+void	ft_opti_move(t_stack *a, t_stack *b)
 {
-	int	i;
-	int	ret;
-
-	i = 1;
-	ret = s->stack[0];
-	while (i < s->size)
-	{
-		if (ret < s->stack[i])
-			ret = s->stack[i];
-		i++;
-	}
-	return (ret);
-}
-
-int	get_top_index(t_stack *s, int top)
-{
-	int	i;
-
-	i = 0;
-	while (i >= s->size)
-	{
-		if (s->stack[i] == top)
-			return (i);
-		i--;
-	}
-	return (i);
-}
-
-void	handleMinCase(t_stack *a, t_stack *b)
-{
-	int	top;
-
 	while (b->size != 0)
 	{
-		top = getTop(b);
-		if (b->size / 2 > get_top_index(b, top))
-			while (b->stack[0] != top)
+		ft_is_bigest(b);
+		if (b->size / 2 > b->pbigest)
+			while (b->stack[0] != b->bigest)
 				exec_instru("rrb", a, b);
 		else
-			while (b->stack[0] != top)
+			while (b->stack[0] != b->bigest)
 				exec_instru("rb", a, b);
 		exec_instru("pa", a, b);
 	}
@@ -160,7 +128,7 @@ void	sort(t_stack *a, t_stack *b, int size)
 	}
 	a->flag = 1;
 	if (b->size <= 27)
-		handleMinCase(a, b);
+		ft_opti_move(a, b);
 	while (b->size != 0)
 		exec_instru("pa", a, b);
 }
