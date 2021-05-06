@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:44:59 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/05/06 09:44:40 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 10:33:46 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct	s_stack
 	int			plowest_n;
 	int			bigest;
 	int			pbigest;
-	int			flag;
 }				t_stack;
 
 long long		ft_atoi_big(const char *str);

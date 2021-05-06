@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 08:48:48 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/05/05 18:13:47 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 11:29:31 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ int			main(int ac, char **av)
 	{
 		if (ac == 4)
 			ft_three_num(&a);
-		else
-			ft_algo(&a, &b);
-		if (ft_is_sorted(ac, av) == 1)
+		if (ac < 50)
+			ft_algo_s(&a, &b, a.size);
+		if (ft_is_sorted_num(&a, a.size) == 1)
+			ft_quicksort(&a, &b, a.size);
+		if (ft_is_sorted_num(&a, a.size) == 1)
 			ft_algo_s(&a, &b, a.size);
 		free(a.stack);
 		free(b.stack);

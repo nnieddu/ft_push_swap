@@ -6,13 +6,13 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:17:14 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/05/06 08:23:12 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 11:39:42 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/push_swap.h"
 
-int		ft_compute_pivot(t_stack *s, int size)
+int		ft_compute_pivot(t_stack *a, int size)
 {
 	int	i;
 	int	j;
@@ -22,7 +22,7 @@ int		ft_compute_pivot(t_stack *s, int size)
 	j = -1;
 	total = 0;
 	while (++j != size)
-		total += s->stack[++i];
+		total += a->stack[++i];
 	return (total / size);
 }
 
@@ -41,7 +41,7 @@ void	ft_opti_big(t_stack *a, t_stack *b)
 	}
 }
 
-void	sort(t_stack *a, t_stack *b, int size, int i)
+void	ft_divide_and_sort(t_stack *a, t_stack *b, int size, int i)
 {
 	int	ra;
 	int	pivot;
@@ -50,9 +50,7 @@ void	sort(t_stack *a, t_stack *b, int size, int i)
 	pivot = ft_compute_pivot(a, size);
 	while (i < size)
 	{
-		if (size % 2 != 0 && a->stack[0] < pivot)
-			exec_instru("pb", a, b);
-		else if (size % 2 == 0 && a->stack[0] <= pivot)
+		if (a->stack[0] <= pivot)
 			exec_instru("pb", a, b);
 		else
 		{
@@ -61,45 +59,31 @@ void	sort(t_stack *a, t_stack *b, int size, int i)
 		}
 		i++;
 	}
-	while (ra-- != 0 && a->flag == 1)
+	while (ra--)
 		exec_instru("rra", a, b);
-	a->flag = 1;
-	if (b->size <= 27)
+	if (b->size <= a->size / 4)
 		ft_opti_big(a, b);
 }
 
-void	ft_quicksort(t_stack *a, t_stack *b, int size, int i)
+void	ft_quicksort(t_stack *a, t_stack *b, int size)
 {
-	if (size == 1)
-	{
-		exec_instru("ra", a, b);
-		return ;
-	}
+	int i;
+
+	i = 0;
 	if (ft_is_sorted_num(a, size) == 0)
 	{
-		if (ft_is_sorted_num_rev(a) == 1)
+		while (i < size)
 		{
-			while (i < size)
-			{
-				exec_instru("ra", a, b);
-				i++;
-			}
+			exec_instru("ra", a, b);
+			i++;
 		}
 		return ;
 	}
-	sort(a, b, size, 0);
+	ft_divide_and_sort(a, b, size, 0);
 	while (b->size != 0)
 		exec_instru("pa", a, b);
-	ft_quicksort(a, b, size / 2, 0);
+	ft_quicksort(a, b, size / 2);
 	if (size % 2 != 0)
 		size++;
-	ft_quicksort(a, b, size / 2, 0);
-}
-
-void	ft_algo(t_stack *a, t_stack *b)
-{
-	a->flag = 0;
-	ft_quicksort(a, b, a->size, 0);
-	if (a->stack[0] > a->stack[1])
-		exec_instru("ra", a, b);
+	ft_quicksort(a, b, size / 2);
 }

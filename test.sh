@@ -2,10 +2,11 @@
 ## paplay done.wavs
 
 for y in `seq 1000`; do
-ARG=`ruby -e "puts (0..100).to_a.shuffle.join(' ')"`
-# echo $ARG >> moyenne
+ARG=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`
+echo $ARG >> moyenne
 ./push_swap $ARG | wc -l >> moyenne
 ./push_swap $ARG | ./checker $ARG >> moyenne
+echo >> moyenne
 done
 
 # for y in `seq 5000`; do
