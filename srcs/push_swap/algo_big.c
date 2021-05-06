@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:17:14 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/05/05 18:14:54 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 08:23:12 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,11 @@ void	ft_opti_big(t_stack *a, t_stack *b)
 	}
 }
 
-void	sort(t_stack *a, t_stack *b, int size)
+void	sort(t_stack *a, t_stack *b, int size, int i)
 {
-	int i;
 	int	ra;
 	int	pivot;
 
-	i = 0;
 	ra = 0;
 	pivot = ft_compute_pivot(a, size);
 	while (i < size)
@@ -63,23 +61,15 @@ void	sort(t_stack *a, t_stack *b, int size)
 		}
 		i++;
 	}
-	while (ra != 0 && a->flag == 1)
-	{
+	while (ra-- != 0 && a->flag == 1)
 		exec_instru("rra", a, b);
-		ra--;
-	}
 	a->flag = 1;
 	if (b->size <= 27)
 		ft_opti_big(a, b);
-	while (b->size != 0)
-		exec_instru("pa", a, b);
 }
 
-void	ft_quicksort(t_stack *a, t_stack *b, int size)
+void	ft_quicksort(t_stack *a, t_stack *b, int size, int i)
 {
-	int	i;
-
-	i = 0;
 	if (size == 1)
 	{
 		exec_instru("ra", a, b);
@@ -97,17 +87,19 @@ void	ft_quicksort(t_stack *a, t_stack *b, int size)
 		}
 		return ;
 	}
-	sort(a, b, size);
-	ft_quicksort(a, b, size / 2);
+	sort(a, b, size, 0);
+	while (b->size != 0)
+		exec_instru("pa", a, b);
+	ft_quicksort(a, b, size / 2, 0);
 	if (size % 2 != 0)
 		size++;
-	ft_quicksort(a, b, size / 2);
+	ft_quicksort(a, b, size / 2, 0);
 }
 
 void	ft_algo(t_stack *a, t_stack *b)
 {
 	a->flag = 0;
-	ft_quicksort(a, b, a->size);
+	ft_quicksort(a, b, a->size, 0);
 	if (a->stack[0] > a->stack[1])
 		exec_instru("ra", a, b);
 }

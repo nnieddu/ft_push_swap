@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 13:44:59 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/05/05 18:04:08 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 09:44:40 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int				ft_is_sorted(int ac, char **av);
 char			*ft_strjoin_cust(char *s1, char const *s2);
 void			ft_tabdel(char ***tab);
 int				ft_is_sorted_num(t_stack *a, int size);
+int				ft_is_duplicate(char **av, int ac, int i, int j);
+int				ft_is_number(char *av);
+void			ft_is_writable(char *inst, t_stack *a, t_stack *b);
 void			exec_instr(char **inst, int i, t_stack *a, t_stack *b);
 void			ft_swap(int flag, t_stack *a, t_stack *b);
 void			ft_push(t_stack *a, t_stack *b);

@@ -6,7 +6,7 @@
 /*   By: ninieddu <ninieddu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 12:53:05 by ninieddu          #+#    #+#             */
-/*   Updated: 2021/05/05 18:07:44 by ninieddu         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 09:44:17 by ninieddu         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,28 @@ void	ft_tabdel(char ***tab)
 	}
 	free(*tab);
 	*tab = 0;
+}
+
+void	ft_write_bn(char *s)
+{
+	if (s)
+	{
+		write(1, s, sizeof(char) * ft_strlen(s));
+		write(1, "\n", 1);
+	}
+}
+
+void	ft_is_writable(char *inst, t_stack *a, t_stack *b)
+{
+	if (ft_strcmp(inst, "pa") == 0 && b->size > 0)
+		ft_write_bn(inst);
+	if (ft_strcmp(inst, "pb") == 0 && a->size > 0)
+		ft_write_bn(inst);
+	if (ft_strcmp(inst, "ra") == 0 && a->size > 1)
+		ft_write_bn(inst);
+	if (ft_strcmp(inst, "rb") == 0 && b->size > 1)
+		ft_write_bn(inst);
+	if (ft_strcmp(inst, "pa") != 0 && ft_strcmp(inst, "pb") != 0 &&
+	ft_strcmp(inst, "ra") != 0 && ft_strcmp(inst, "rb") != 0)
+		ft_write_bn(inst);
 }
